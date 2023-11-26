@@ -2,7 +2,16 @@
 * IS/SE/SS ZC444: Artificial Intelligence
 * Assignment-01: Custom AI Chatbot Using LLM
 * Student Id: 2022MT12463
-* [Demo video link url](https://www.freecodecamp.org/news/how-to-build-a-chatbot-with-openai-chatgpt-nodejs-and-react/) 
+* [Demo video link url](<drive link will be updated here>) 
+
+# Key items considered in project
+* Database to store file embedding
+    * we are using csv file as database to store file embeddings
+    * It will be stored under `backend\data\fileEmbedding.csv`
+    * It contain two columns: `Text`,`Embedding`
+* Models used for OpenAI API request:
+    * Embedding : `text-embedding-ada-002`
+    * Chat completion : `text-davinci-003`
 
 ## Dependencies
 ### Backend
@@ -14,16 +23,17 @@
 * [React](https://react.dev/)
 * [Vite](https://vitejs.dev/)
 
-## Installation
+# Installation
 * Unzip the '2022MT12463-ai-assignment-chatbot'
+### 1. API Server :
 * Navigate into the folder `cd 2022MT12463-ai-assignment-chatbot`
-
 * Navigate into the `backend` folder `cd backend`
 * Install the dependencies ``npm install``
 * Run the `index.js` file `node index`
 
 *That will start the backend server on port `8000`: http://localhost:8000/*
-
+### 2. Chatbot WebApp :
+* Navigate into the folder `cd 2022MT12463-ai-assignment-chatbot`
 * Navigate into the `frontend` folder `cd frontend`
 * Install the dependencies ``npm install``
 * Start the local server ``npm run dev``
@@ -50,3 +60,5 @@
 * Enter your input in the textbox placed at the bottom of your screen
 * After typing hit Enter/click Send button
 * Response will be displayed with user name : AI_Assignment_PDF_Embedding_Bot
+
+

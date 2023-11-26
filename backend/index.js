@@ -11,7 +11,7 @@ import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 
 //Constants
-const EMBEDDING_FILE_PATH = 'data\\fileEmbedding.csv';
+const EMBEDDING_FILE_PATH = 'data\\fileEmbedding.csv';//we are using csv file as database to store file embeddings
 const OPENAI_COMPLETIONS_MODEL = "text-davinci-003";
 const OPENAI_EMBEDDING_MODEL = 'text-embedding-ada-002';
 const DEFAULT_AI_COMPLETION_TEXT = 'Hey there!, This is response from AI agent.Please upload PDF to provide more context';
@@ -55,7 +55,8 @@ app.post("/", async (request, response) => {
   if (Object.keys(embeddingData).length > 0) {
     completion = await generateOpenAIResponse(prompt, embeddingData);
   }
-
+  console.log(`User Prompt:${prompt}`) 
+  console.log(`Chatbot Response:${completion}`)
   response.json({
     output: { role: "AI_Assignment_PDF_Embedding_Bot", content: completion },
   });
@@ -72,7 +73,7 @@ app.post('/upload-pdf', upload.array('files',100), async (req, res) => {
       // Use OpenAI to generate embedding from the PDF text
       const pdfEmbedding = await generateEmbedding(pdfText, OPENAI_EMBEDDING_MODEL);      
 
-      await storeFileEmbedding(pdfText,JSON.stringify(pdfEmbedding));   
+      await storeFileEmbeddingInCsv(pdfText,JSON.stringify(pdfEmbedding));   
 
       return `File :${file.originalname} uploaded successfully`;
     }));
@@ -170,12 +171,11 @@ const getSimilarityScore = (embeddingsHash, promptEmbedding) => {
 
 const getFileEmbedding = async () => {
 
-  const fileData = await readFromCSV(EMBEDDING_FILE_PATH);
-  console.log(fileData);
+  const fileData = await readFromCSV(EMBEDDING_FILE_PATH);  
   return fileData;
 }
 
-const storeFileEmbedding =  async (fileText,fileEmbedding)=>{
+const storeFileEmbeddingInCsv =  async (fileText,fileEmbedding)=>{
 
    const data = [fileText, fileEmbedding]
    const formattedData = data.map(row => `"${row}"`).join(',');
@@ -202,8 +202,7 @@ const extractTextFromPDF = (pdfBuffer) => {
 
       }
       else if (item.text) {
-        textLines.push(item.text);
-        console.log(item.text);
+        textLines.push(item.text);        
       }
     });
   });
