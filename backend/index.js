@@ -16,6 +16,14 @@ const OPENAI_COMPLETIONS_MODEL = "text-davinci-003";
 const OPENAI_EMBEDDING_MODEL = 'text-embedding-ada-002';
 const DEFAULT_AI_COMPLETION_TEXT = 'Hey there!, This is response from AI agent.Please upload PDF to provide more context';
 
+//SECRETS
+const OPENAI_KEYS_ORGANIZATION = '';
+const OPENAI_KEYS_API = '';
+
+if(OPENAI_KEYS_ORGANIZATION == '' || OPENAI_KEYS_API == '' )
+{
+  throw new Error(`Please update OpenAPI Organization & API Secret constants with actual secrets.See Line No 20 & 21 in index.js.`)
+}
 const app = express();
 const port = 8000;
 app.use(bodyParser.json());
@@ -29,8 +37,8 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
 const openAIApiConfiguration = new Configuration({
-  organization: "org-Hvo9gUykTyO0QGScxtVeCBY3",
-  apiKey: "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",
+  organization: OPENAI_KEYS_ORGANIZATION,
+  apiKey: OPENAI_KEYS_API,
 });
 
 const openai = new OpenAIApi(openAIApiConfiguration);
@@ -48,7 +56,7 @@ app.post("/", async (request, response) => {
   const { chats } = request.body;
   const prompt = chats.content;
 
-  const embeddingData = await getFileEmbedding();
+  const embeddingData = {};//await getFileEmbedding();
 
   let completion = DEFAULT_AI_COMPLETION_TEXT;
 
