@@ -25,14 +25,23 @@
 
 # Installation
 * Unzip the '2022MT12463-ai-assignment-chatbot'
-### 1. API Server :
+
+### 1. Update OpenAPI Secrets :
+* Navigate into the folder `cd 2022MT12463-ai-assignment-chatbot`
+* Navigate into the `backend` folder `cd backend`
+* Open file `index.js`
+* Navigate to line 21 and update the following secret constants
+    * `OPENAI_KEYS_ORGANIZATION` : Organization key from OpenAPI
+    * `OPENAI_KEYS_API` : API key from OpenAPI
+    
+### 2. API Server :
 * Navigate into the folder `cd 2022MT12463-ai-assignment-chatbot`
 * Navigate into the `backend` folder `cd backend`
 * Install the dependencies ``npm install``
 * Run the `index.js` file `node index`
 
 *That will start the backend server on port `8000`: http://localhost:8000/*
-### 2. Chatbot WebApp :
+### 3. Chatbot WebApp :
 * Navigate into the folder `cd 2022MT12463-ai-assignment-chatbot`
 * Navigate into the `frontend` folder `cd frontend`
 * Install the dependencies ``npm install``

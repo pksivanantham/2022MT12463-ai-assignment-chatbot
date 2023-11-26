@@ -10,13 +10,6 @@ function App() {
   const [uploadResponse, setUploadResponse] = useState(null);
   const [showFileUpload, setShowFileUpload] = useState(false);
 
-  const chatSectionRef = useRef(null); 
-  useEffect(() => {
-    // Scroll to the bottom when chats are updated
-    if (chatSectionRef.current) {
-      chatSectionRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  }, [chats]);
 
   const chat = async (e, message) => {
     e.preventDefault();
@@ -68,10 +61,7 @@ function App() {
       const response = await axios.post('/upload-pdf', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
-      setUploadResponse(response.data.fileResponses);
-      if (chatSectionRef.current) {
-      chatSectionRef.current.scrollIntoView({ behavior: "smooth" });
-      }
+      setUploadResponse(response.data.fileResponses);      
       
     } catch (error) {
       console.error('Error fetching response from server:', error);
