@@ -3,6 +3,7 @@
 * Assignment-01: Custom AI Chatbot Using LLM
 * Student Id: 2022MT12463
 * [Demo video link url](https://www.loom.com/share/345a28edcbe142c9b61fab9d78e8aac4?sid=e33efef0-5752-4772-b189-6d08e6fc7cef) 
+* [Github repo link](https://github.com/pksivanantham/2022MT12463-ai-assignment-chatbot)
 
 # Key items considered in project
 * Database to store file embedding
