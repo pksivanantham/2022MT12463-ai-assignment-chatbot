@@ -56,7 +56,7 @@ app.post("/", async (request, response) => {
   const { chats } = request.body;
   const prompt = chats.content;
 
-  const embeddingData = {};//await getFileEmbedding();
+  const embeddingData = await getFileEmbedding();
 
   let completion = DEFAULT_AI_COMPLETION_TEXT;
 
